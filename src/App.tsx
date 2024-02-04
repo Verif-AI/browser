@@ -1,25 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import verifai_logo from './assets/verifai_logo.svg';
+
+import Box from '@mui/material/Box'
+import TextField from '@mui/material/TextField'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box 
+      sx={{
+        padding: '10px',
+        textAlign: 'left'
+      }}
+    >
+      <Box 
+        component='img' 
+        src={verifai_logo}
+        sx={{
+          height: '50px',
+          padding: '5px'
+        }}
+      />
+      <Box
+        component="form"
+        sx={{
+          '& .MuiTextField-root': { width: '100%' },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <TextField
+          id="outlined-textarea"
+          label="Claim"
+          placeholder="Enter claim to verify"
+          multiline
+        />
+      </Box>
+    </Box>
   );
 }
 
