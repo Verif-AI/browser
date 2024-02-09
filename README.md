@@ -10,7 +10,8 @@
 ### Build extension
 To build the extension...
 
-1. `npm run build`
+1. `npm i`
+2. `npm run build`
 
 ### Load extension
 
