@@ -24,8 +24,6 @@ export default function ClaimForm() {
         id="claim-text-field"
         label="Enter claim to verify"
         placeholder="Claim"
-        maxRows={4}
-        multiline
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
