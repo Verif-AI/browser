@@ -3,19 +3,16 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 
-// import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function ClaimForm() {
 
-  // const [claim, setClaim] = useState("")
+  const [claim, setClaim] = useState("")
 
-  const handleSubmit = (e: any): void => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    alert("Form Submitted");
+    alert(claim)
   };
-
-
-  // TODO: Use useFormControl to manage adornments
 
   return (
     <form onSubmit={handleSubmit}>
@@ -24,6 +21,8 @@ export default function ClaimForm() {
         id="claim-text-field"
         label="Enter claim to verify"
         placeholder="Claim"
+        value={claim}
+        onChange={(e)=>setClaim(e.target.value)}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">

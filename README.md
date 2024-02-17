@@ -6,6 +6,12 @@
 > Before starting, make sure you have the following installed
 > - `node >= 20.11.0`
 > - `npm >= 10.2.4`
+>
+> For documentation on installing node and npm, see the link https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+
+### Backend
+
+Before running the extension, make sure you are running the backend. Documentation can be found here https://github.com/Verif-AI/backend/tree/main
 
 ### Build extension
 To build the extension...
