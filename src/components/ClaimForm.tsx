@@ -3,15 +3,27 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 
-import { useState, useEffect } from 'react';
+import verifyClaim, { VerifyClaimResponse } from '../utils/VerifyClaim';
+
+import { useState } from 'react';
 
 export default function ClaimForm() {
 
   const [claim, setClaim] = useState("")
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    alert(claim)
+    setIsLoading(true);
+    // alert(claim);
+
+    try {
+      const result: VerifyClaimResponse = verifyClaim(claim);
+    } catch (error) {
+      // Handle error gracefully, e.g., display user-friendly message
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -22,7 +34,7 @@ export default function ClaimForm() {
         label="Enter claim to verify"
         placeholder="Claim"
         value={claim}
-        onChange={(e)=>setClaim(e.target.value)}
+        onChange={(e) => setClaim(e.target.value)}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -34,6 +46,5 @@ export default function ClaimForm() {
         }}
       />
     </form>
-
-  )
+  );
 }
