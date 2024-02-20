@@ -2,7 +2,11 @@ import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import VeracityScoreBar from './VeracityScoreBar';
 
-const JustificationCard = () => {
+interface JustificationCardProps {
+  justification: string;
+}
+
+const JustificationCard: React.FC<JustificationCardProps> = ({justification}) => {
   return (
     <div className="pt-2">
       <Card variant="outlined">
@@ -11,7 +15,7 @@ const JustificationCard = () => {
             <VeracityScoreBar veracityScore={50} />
           </div>
           <div className="h-[300px] overflow-auto">
-            <Typography>
+            <Typography variant="body1">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit,
               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
               Hac habitasse platea dictumst vestibulum rhoncus est pellentesque

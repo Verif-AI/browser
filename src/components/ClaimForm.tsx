@@ -15,10 +15,11 @@ const ClaimForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     setIsLoading(true);
-    // alert(claim);
+    alert(claim);
 
     try {
       const result: VerifyClaimResponse = verifyClaim(claim);
+      // alert(result);
     } catch (error) {
       // Handle error gracefully, e.g., display user-friendly message
     } finally {
