@@ -7,7 +7,7 @@ import verifyClaim, { VerifyClaimResponse } from '../utils/VerifyClaim';
 
 import { useState } from 'react';
 
-export default function ClaimForm() {
+const ClaimForm = () => {
 
   const [claim, setClaim] = useState("")
   const [isLoading, setIsLoading] = useState(false);
@@ -46,5 +46,7 @@ export default function ClaimForm() {
         }}
       />
     </form>
-  );
+  )
 }
+
+export default ClaimForm;

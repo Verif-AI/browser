@@ -1,14 +1,15 @@
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
+import VeracityScoreBar from './VeracityScoreBar';
 
-export default function JustificationCard() {
+const JustificationCard = () => {
   return (
     <div className="pt-2">
       <Card variant="outlined">
-        <div className="p-4">
-          <Typography className="pb-4" variant="h5">
-            Veracity Score: 70
-          </Typography>
+        <div className="pt-2 pb-4 pr-4 pl-4">
+          <div className="pb-4" >
+            <VeracityScoreBar veracityScore={50} />
+          </div>
           <div className="h-[300px] overflow-auto">
             <Typography>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -28,6 +29,7 @@ export default function JustificationCard() {
         </div>
       </Card>
     </div>
-
   )
-};
+}
+
+export default JustificationCard;
