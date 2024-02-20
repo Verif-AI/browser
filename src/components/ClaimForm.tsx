@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 
 import { useState, useEffect } from 'react';
 
-export default function ClaimForm() {
+const ClaimForm = () => {
 
   const [claim, setClaim] = useState("")
 
@@ -34,6 +34,7 @@ export default function ClaimForm() {
         }}
       />
     </form>
-
   )
 }
+
+export default ClaimForm;
