@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export interface VerifyClaimResponse {
-  // TODO: Define response data structure here (e.g., success:boolean, message:string)
+  justification: string;
 }
 
 export default async function verifyClaim(claim: string): Promise<VerifyClaimResponse> {

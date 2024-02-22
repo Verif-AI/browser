@@ -7,7 +7,11 @@ import verifyClaim, { VerifyClaimResponse } from '../utils/VerifyClaim';
 
 import { useState } from 'react';
 
-const ClaimForm = () => {
+interface ClaimFormProps {
+  onSubmit: any;
+}
+
+const ClaimForm = (props: ClaimFormProps) => {
 
   const [claim, setClaim] = useState("")
   const [isLoading, setIsLoading] = useState(false);
@@ -15,11 +19,13 @@ const ClaimForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     setIsLoading(true);
-    alert(claim);
 
     try {
-      const result: VerifyClaimResponse = verifyClaim(claim);
-      // alert(result);
+      // TODO: Replace with API call
+      // const verifyClaimResponse: Promise<VerifyClaimResponse> = verifyClaim(claim);
+      const justification: string = claim;
+      const veracityScore: number = 40;
+      props.onSubmit({justification: justification, veracityScore: veracityScore});
     } catch (error) {
       // Handle error gracefully, e.g., display user-friendly message
     } finally {
