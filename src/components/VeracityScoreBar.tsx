@@ -4,16 +4,16 @@ interface VeracityScoreProps {
   veracityScore: number;
 }
 
-const VeracityScoreBar: React.FC<VeracityScoreProps> = ({ veracityScore }) => {
+const VeracityScoreBar= (props: VeracityScoreProps) => {
   return (
     <>
       <Typography className="flex justify-center" variant="overline">
         Veracity Score
       </Typography>
       <Typography className="flex justify-center pb-2" variant="h5">
-        {veracityScore}
+        {props.veracityScore}
       </Typography>
-      <LinearProgress variant="determinate" value={veracityScore} />
+      <LinearProgress variant="determinate" value={props.veracityScore} />
     </>
   );
 }

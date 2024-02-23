@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import VeracityScoreBar from './VeracityScoreBar';
 
 interface JustificationCardProps {
-  justification: string;
+  justification: any;
   veracityScore: number;
 }
 
