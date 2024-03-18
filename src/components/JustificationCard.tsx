@@ -8,6 +8,18 @@ interface JustificationCardProps {
 }
 
 const JustificationCard = (props: JustificationCardProps) => {
+  const justification = props.justification !== "" ? (
+    <Typography variant="body1">
+      {props.justification}
+    </Typography>
+  ) : (
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%", width: "100%" }}>
+      <Typography variant="body1" color="text.secondary">
+        No claim entered to verify
+      </Typography>
+    </div>
+  );
+
   return (
     <div className="pt-2">
       <Card variant="outlined">
@@ -16,9 +28,7 @@ const JustificationCard = (props: JustificationCardProps) => {
             <VeracityScoreBar veracityScore={props.veracityScore} />
           </div>
           <div className="h-[300px] overflow-auto">
-            <Typography variant="body1">
-              {props.justification}
-            </Typography>
+            {justification}
           </div>
         </div>
       </Card>

@@ -6,7 +6,7 @@ export interface VerifyClaimResponse {
 
 export default async function verifyClaim(claim: string): Promise<VerifyClaimResponse> {
   try {
-    const response = await axios.post('http://localhost:3000/verify', { claim });
+    const response = await axios.get('http://localhost:3000/verify', { params: {claim: claim} });
     return response.data;
   } catch (error) {
     console.error('Error verifying claim:', error);
