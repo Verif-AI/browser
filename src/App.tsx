@@ -8,6 +8,7 @@ export default function App() {
 
   const [llmResponse, setLlmResponse] = useState({
     justification: '',
+    veracity: null,
     veracityScore: 0
   });
 
@@ -19,6 +20,7 @@ export default function App() {
         </div>
         <ClaimForm onSubmit={setLlmResponse} />
         <JustificationCard
+          veracity={llmResponse.veracity}
           justification={llmResponse.justification}
           veracityScore={llmResponse.veracityScore}
         />

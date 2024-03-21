@@ -25,7 +25,8 @@ const ClaimForm = (props: ClaimFormProps) => {
       // const verifyClaimResponse: Promise<VerifyClaimResponse> = verifyClaim(claim);
       const justification: string = claim;
       const veracityScore: number = 40;
-      props.onSubmit({justification: justification, veracityScore: veracityScore});
+      const veracity: boolean = false;
+      props.onSubmit({justification: justification, veracityScore: veracityScore, veracity: veracity});
     } catch (error) {
       // Handle error gracefully, e.g., display user-friendly message
     } finally {
