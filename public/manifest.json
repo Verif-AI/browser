@@ -1,10 +1,13 @@
 {
   "manifest_version": 3,
   "name": "Verif.AI",
-  "description": "Detects misinformation within claim or statement",
+  "description": "Verifies misinformation within a claim or statement",
   "version": "1.0",
   "action": {
     "default_popup": "index.html",
     "default_icon": "verifai_icon.png"
+  },
+  "icons": {
+    "128": "verifai_icon.png"
   }
 }

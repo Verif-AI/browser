@@ -1,21 +1,24 @@
-import { LinearProgress, Typography } from "@mui/material";
+import { Box, Grid, LinearProgress, Typography } from "@mui/material";
 
-interface VeracityScoreProps {
-  veracityScore: number; //Progress value between 0 and 100
+interface VeracityProps {
+  veracity: boolean | null;
+  veracityScore: number;
 }
 
-const VeracityScoreBar: React.FC<VeracityScoreProps> = ({ veracityScore }) => {
+const VeracityBar = (props: VeracityProps) => {
+  const veracityStatement: string = props.veracity == null ? "Veracity" : (props.veracity ? "Mostly True" : "Mostly False")
+
   return (
     <>
       <Typography className="flex justify-center" variant="overline">
-        Veracity Score
+        {veracityStatement}
       </Typography>
       <Typography className="flex justify-center pb-2" variant="h5">
-        {veracityScore}
+        {props.veracityScore}
       </Typography>
-      <LinearProgress variant="determinate" value={veracityScore} />
+      <LinearProgress variant="determinate" className="inline-block" value={props.veracityScore} />
     </>
   );
 }
 
-export default VeracityScoreBar; 
+export default VeracityBar; 

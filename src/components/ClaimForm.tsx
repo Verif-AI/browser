@@ -3,15 +3,35 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 
-import { useState, useEffect } from 'react';
+import verifyClaim, { VerifyClaimResponse } from '../utils/VerifyClaim';
 
-const ClaimForm = () => {
+import { useState } from 'react';
+
+interface ClaimFormProps {
+  onSubmit: any;
+}
+
+const ClaimForm = (props: ClaimFormProps) => {
 
   const [claim, setClaim] = useState("")
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    alert(claim)
+    setIsLoading(true);
+
+    try {
+      // TODO: Replace with API call
+      // const verifyClaimResponse: Promise<VerifyClaimResponse> = verifyClaim(claim);
+      const justification: string = claim;
+      const veracityScore: number = 40;
+      const veracity: boolean = false;
+      props.onSubmit({justification: justification, veracityScore: veracityScore, veracity: veracity});
+    } catch (error) {
+      // Handle error gracefully, e.g., display user-friendly message
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -22,7 +42,7 @@ const ClaimForm = () => {
         label="Enter claim to verify"
         placeholder="Claim"
         value={claim}
-        onChange={(e)=>setClaim(e.target.value)}
+        onChange={(e) => setClaim(e.target.value)}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
