@@ -1,20 +1,41 @@
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import VeracityBar from './VeracityScoreBar';
 
-interface JustificationCardProps {
-  justification: any;
-  veracity: boolean | null;
-  veracityScore: number;
-}
+function JustificationCard() {
+  const { justification, veracityScore, sources } = useSelector((state: RootState) => state.llm);
 
-const JustificationCard = (props: JustificationCardProps) => {
-  const justification = props.justification !== "" ? (
-    <Typography variant="body1">
-      {props.justification}
-    </Typography>
+  const sourceList = sources.map((source, index) => (
+    <li key={index} className="mb-1">
+      <a href={source} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+        {source}
+      </a>
+    </li>
+  ));
+
+  const justificationContent = justification !== "" ? (
+    <div className="space-y-4">
+      <div>
+        <Typography variant="h6" className="font-bold">
+          Justification
+        </Typography>
+        <Typography variant="body1">
+          {justification}
+        </Typography>
+      </div>
+      <div>
+        <Typography variant="h6" className="font-bold">
+          Sources
+        </Typography>
+        <ul className="list-disc pl-5">
+          {sourceList}
+        </ul>
+      </div>
+    </div>
   ) : (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%", width: "100%" }}>
+    <div className="flex justify-center items-center h-full w-full">
       <Typography variant="body1" color="text.secondary">
         No claim entered to verify
       </Typography>
@@ -23,18 +44,21 @@ const JustificationCard = (props: JustificationCardProps) => {
 
   return (
     <div className="pt-2">
-      <Card variant="outlined">
-        <div className="pt-2 pb-4 pr-4 pl-4">
-          <div className="pb-4" >
-            <VeracityBar veracityScore={props.veracityScore} veracity={props.veracity} />
-          </div>
-          <div className="h-[300px] overflow-auto">
-            {justification}
+      <Card variant="outlined" className="shadow-md">
+        <div className="p-4">
+          {justification !== "" && (
+            <div className="pb-4">
+              <VeracityBar />
+            </div>
+          )}
+          <div className="max-h-[300px] overflow-auto">
+            {justificationContent}
           </div>
         </div>
       </Card>
     </div>
-  )
+  );
 }
 
 export default JustificationCard;
+
