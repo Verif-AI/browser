@@ -1,12 +1,11 @@
-import { Box, Grid, LinearProgress, Typography } from "@mui/material";
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
+import { LinearProgress, Typography } from "@mui/material";
 
-interface VeracityProps {
-  veracity: boolean | null;
-  veracityScore: number;
-}
+function VeracityBar() {
+  const { veracity, veracityScore } = useSelector((state: RootState) => state.llm);
 
-const VeracityBar = (props: VeracityProps) => {
-  const veracityStatement: string = props.veracity == null ? "Veracity" : (props.veracity ? "Mostly True" : "Mostly False")
+  const veracityStatement: string = veracity == null ? "Veracity" : (veracity ? "Mostly True" : "Mostly False");
 
   return (
     <>
@@ -14,9 +13,9 @@ const VeracityBar = (props: VeracityProps) => {
         {veracityStatement}
       </Typography>
       <Typography className="flex justify-center pb-2" variant="h5">
-        {props.veracityScore}
+        {veracityScore}
       </Typography>
-      <LinearProgress variant="determinate" className="inline-block" value={props.veracityScore} />
+      <LinearProgress variant="determinate" className="inline-block" value={veracityScore} />
     </>
   );
 }
