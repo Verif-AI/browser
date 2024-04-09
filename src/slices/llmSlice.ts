@@ -1,21 +1,30 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 
-interface LlmState {
+interface InformationItem {
+  title: string;
+  link: string;
+  snippet: string;
+}
+
+interface Result {
+  statement: string;
+  judgement: string;
   justification: string;
-  veracity: boolean | null;
-  veracityScore: number;
-  sources: string[];
+  process_time: number;
+  information: InformationItem[];  // Updated to be an array of InformationItem objects
+  message: string;
+}
+
+interface LlmState {
+  results: Result[];
   loading: boolean;
   error: string | null;
   taskStatus: string | null;
 }
 
 const initialState: LlmState = {
-  justification: '',
-  veracity: null,
-  veracityScore: 0,
-  sources: [],
+  results: [],
   loading: false,
   error: null,
   taskStatus: null,
@@ -73,10 +82,7 @@ export const llmSlice = createSlice({
       })
       .addCase(verifyClaim.fulfilled, (state, action) => {
         state.loading = false;
-        state.justification = action.payload.justification;
-        state.veracity = action.payload.veracity;
-        state.veracityScore = action.payload.veracityScore;
-        state.sources = action.payload.sources;
+        state.results = action.payload;
         state.taskStatus = 'success';
       })
       .addCase(verifyClaim.rejected, (state, action) => {

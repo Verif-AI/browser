@@ -1,4 +1,5 @@
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import CircularProgress from '@mui/material/CircularProgress';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
@@ -32,14 +33,13 @@ function ClaimForm() {
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton type="submit" disabled={loading}>
-                  <ArrowForwardIcon />
+                  {loading ? <CircularProgress size={24} /> : <ArrowForwardIcon />}
                 </IconButton>
               </InputAdornment>
             ),
           }}
         />
       </form>
-      {loading && <p>Loading..., task status is: </p>}
       {error && <p>Error: {error}</p>}
     </div>
   );
@@ -56,5 +56,5 @@ export default ClaimForm;
 
 
 
- 
- 
+
+
